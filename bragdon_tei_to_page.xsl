@@ -46,30 +46,13 @@
     </xsl:template>
 
     <!-- title -->    
-    <xsl:template match="sourceDesc/bibl">
+    <xsl:template match="teiHeader/fileDesc/titleStmt">
         <titleInfo xmlns="http://www.loc.gov/mods/v3">
             <xsl:element name="title" namespace="http://www.loc.gov/mods/v3"><xsl:value-of select="title"/></xsl:element>
         </titleInfo>
     </xsl:template>
     
-    <!-- Name Part 
-    <xsl:template match="sourceDesc/bibl">
-        <xsl:element namespace="http://www.loc.gov/mods/v3" name="name">
-            <xsl:attribute name="type">personal</xsl:attribute>
-            
-            <xsl:element name="namePart" namespace="http://www.loc.gov/mods/v3">
-                <xsl:value-of select="author"/>
-            </xsl:element>
-            
-            <xsl:element namespace="http://www.loc.gov/mods/v3" name="role">
-                <xsl:element namespace="http://www.loc.gov/mods/v3" name="roleTerm">
-                    <xsl:attribute name="type">text</xsl:attribute>
-                    <xsl:attribute name="authority">marcrelator</xsl:attribute>Creator</xsl:element>
-            </xsl:element>
-            
-        </xsl:element>
-    </xsl:template>
-    -->
+  
     
     <!-- Date when diary was created -->
     <xsl:template match="text/body/head/date">
@@ -92,12 +75,15 @@
         </physicalDescription>
     </xsl:template>
     
-    <xsl:template match="sourceDesc/msDesc/msIdentifier">
+    <xsl:template match="sourceDesc">
         <relatedItem displayLabel="Volume" type="host" xmlns="http://www.loc.gov/mods/v3">
             <titleInfo>
-                <xsl:element name="title" namespace="http://www.loc.gov/mods/v3">May Bragdon Diary, <xsl:value-of select="idno"/></xsl:element>
-                
+                <xsl:element name="title" namespace="http://www.loc.gov/mods/v3"><xsl:value-of select="bibl/title"/></xsl:element>
             </titleInfo>
+            
+            <identifier type="local">
+                <xsl:value-of select="msDesc/msIdentifier/idno"/>
+            </identifier>
         </relatedItem>
     </xsl:template>
     
