@@ -25,8 +25,8 @@
                     </publicationStmt>
                     <sourceDesc>
                         <bibl>
-                            <title>May Bragdon</title>
-                            <author>May Bragdon Diaries</author>
+                            <title>May Bragdon Diaries</title>
+                            <author>May Bragdon</author>
                             <date></date>
                             <orgName>University of Rochester Department of Rare Books and Special Collections</orgName>
                             <address>

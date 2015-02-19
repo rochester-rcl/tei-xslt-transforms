@@ -14,15 +14,15 @@
             <teiHeader>
                 <fileDesc>
                     <titleStmt>
-                        <title>List of person in May Bragdon Diaries</title>
+                        <title>List of persons in May Bragdon Diaries</title>
                     </titleStmt>
                     <publicationStmt>
                         <p>May Bragdon Diaries Project</p>
                     </publicationStmt>
                     <sourceDesc>
                         <bibl>
-                            <title>May Bragdon</title>
-                            <author>May Bragdon Diaries</author>
+                            <title>May Bragdon Diaries</title>
+                            <author>May Bragdon</author>
                             <date/>
                             <orgName>University of Rochester Department of Rare Books and Special
                                 Collections</orgName>
