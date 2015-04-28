@@ -8,6 +8,13 @@
         
 
     <xsl:template match="/">
+       
+            <xsl:variable name="urlArray">
+                <xsl:for-each select="tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:additions/tei:figure/tei:graphic | @url">
+                    <item><xsl:value-of select="@url"/></item>
+                </xsl:for-each>
+            </xsl:variable>
+        
      <script type="text/javascript" src="http://rcldrupaldev.lib.rochester.edu:89/sites/all/modules/xsl_formatter/xsl/scripts/iviewer/test/jqueryui.js" ></script>
      <script type="text/javascript" src="http://rcldrupaldev.lib.rochester.edu:89/sites/all/modules/xsl_formatter/xsl/scripts/iviewer/test/jquery.mousewheel.min.js" ></script>
      <script type="text/javascript" src="http://rcldrupaldev.lib.rochester.edu:89/sites/all/modules/xsl_formatter/xsl/scripts/iviewer/jquery.iviewer.js" ></script>
@@ -31,12 +38,12 @@
          jQuery("#update").click(function(){ iv1.iviewer('update_container_info'); });
          jQuery("#page1").click(function()
             {
-            iv1.iviewer('loadImage', "http://rcldrupaldev.lib.rochester.edu:89/sites/all/modules/xsl_formatter/xsl/scripts/iviewer/test/18310102FMS_WHS1_p1.jpg");
+            iv1.iviewer('loadImage', "<xsl:value-of select="$urlArray/item[1]"/>");
             return false;
             });
          jQuery("#page2").click(function()
             {
-            iv1.iviewer('loadImage', "http://rcldrupaldev.lib.rochester.edu:89/sites/all/modules/xsl_formatter/xsl/scripts/iviewer/test/18310102FMS_WHS1_p2.jpg");
+            iv1.iviewer('loadImage', "<xsl:value-of select="$urlArray/item[2]"/>");
             return false;
             });
          jQuery("#page3").click(function()
@@ -177,14 +184,5 @@
             <strong>Death:</strong><xsl:text>&#160;</xsl:text><xsl:value-of select = "document('http://seward.lib.rochester.edu/tei/persons.xml')//tei:text/tei:body/tei:div/tei:listPerson/tei:person[@xml:id = $person]/tei:death"></xsl:value-of>
         </div>
     </xsl:template>
-    
-    
-    <!--<xsl:template match="tei:text/tei:body/tei:div/tei:p/tei:hi | @underline">
-        <span class="underline">
-            <xsl:apply-templates/>
-        </span>
-    </xsl:template>-->
-    
-        
-    
+  
     </xsl:stylesheet>
