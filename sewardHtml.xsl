@@ -4,7 +4,7 @@
         
       
     
-    <xsl:output indent="yes" encoding="utf-8" method="html"/>
+    <xsl:output indent="yes" method="html"/>
         
 
     <xsl:template match="/">
@@ -24,21 +24,17 @@
          onStartDrag: function(ev, coords) { return true; }, //this image will be dragged
          onDrag: function(ev, coords) { }
          });
-         
          jQuery("#in").click(function(){ iv1.iviewer('zoom_by', 1); });
          jQuery("#out").click(function(){ iv1.iviewer('zoom_by', -1); });
          jQuery("#fit").click(function(){ iv1.iviewer('fit'); });
          jQuery("#orig").click(function(){ iv1.iviewer('set_zoom', 100); });
          jQuery("#update").click(function(){ iv1.iviewer('update_container_info'); });
-
          <xsl:for-each select="tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:additions/tei:figure/tei:graphic">
-  
          jQuery("#page<xsl:value-of select="position()"/>").click(function()
-            {
-              iv1.iviewer('loadImage', "<xsl:value-of select="@url"/>");
-                 return false;
-             });
-             
+         {
+         iv1.iviewer('loadImage', "<xsl:value-of select="@url"/>");
+         return false;
+         });  
          </xsl:for-each>
          
          var iv2 = jQuery("#viewer2").iviewer(
