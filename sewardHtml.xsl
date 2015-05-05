@@ -98,7 +98,8 @@
         
         <xsl:element name="a">
             <xsl:attribute name="href">#</xsl:attribute>
-            <xsl:attribute name="id">page<xsl:value-of select="@n"/>Page <xsl:value-of select="@n"/></xsl:attribute>
+            <xsl:attribute name="id">page<xsl:value-of select="@n"/></xsl:attribute>
+            Page <xsl:value-of select="@n"/>
             <xsl:apply-templates/>
         </xsl:element>
  
