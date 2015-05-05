@@ -96,26 +96,19 @@
                 <xsl:apply-templates/>
             </span>
         </xsl:template>
-    <xsl:template match="tei:text/tei:body/tei:div/tei:p/tei:pb[@n=1]" >
-        <a href="#" id="page1">Page 1
+    
+    <xsl:template match="tei:text/tei:body/tei:div/tei:p/tei:pb | @n">
+        
+        <xsl:element name="a">
+            <xsl:attribute name="href">#</xsl:attribute>
+            <xsl:attribute name="id">page<xsl:value-of select="@n"/></xsl:attribute>
             <xsl:apply-templates/>
-        </a>
+        </xsl:element>
+       
+        
+        
     </xsl:template>
-    <xsl:template match="tei:text/tei:body/tei:div/tei:p/tei:pb[@n=2]" >
-        <a href="#" id="page2">Page 2
-            <xsl:apply-templates/>
-        </a>
-    </xsl:template>
-    <xsl:template match="tei:text/tei:body/tei:div/tei:p/tei:pb[@n=3]" >
-        <a href="#" id="page3">Page 3
-            <xsl:apply-templates/>
-        </a>
-    </xsl:template>
-    <xsl:template match="tei:text/tei:body/tei:div/tei:p/tei:pb[@n=4]" >
-        <a href="#" id="page4">Page 4
-            <xsl:apply-templates/>
-        </a>
-    </xsl:template>
+   
     <xsl:template match="//tei:titleStmt/tei:title">
         <h2 class="title"><strong>
         <xsl:apply-templates/>
