@@ -8,12 +8,6 @@
         
 
     <xsl:template match="/">
-       
-            <xsl:variable name="urlArray">
-                <xsl:for-each select="tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:additions/tei:figure/tei:graphic | @url">
-                    <item><xsl:value-of select="@url"/></item>
-                </xsl:for-each>
-            </xsl:variable>
         
      <script type="text/javascript" src="http://rcldrupaldev.lib.rochester.edu:89/sites/all/modules/xsl_formatter/xsl/scripts/iviewer/test/jqueryui.js" ></script>
      <script type="text/javascript" src="http://rcldrupaldev.lib.rochester.edu:89/sites/all/modules/xsl_formatter/xsl/scripts/iviewer/test/jquery.mousewheel.min.js" ></script>
@@ -36,26 +30,16 @@
          jQuery("#fit").click(function(){ iv1.iviewer('fit'); });
          jQuery("#orig").click(function(){ iv1.iviewer('set_zoom', 100); });
          jQuery("#update").click(function(){ iv1.iviewer('update_container_info'); });
-         jQuery("#page1").click(function()
+
+         <xsl:for-each select="tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:physDesc/tei:additions/tei:figure/tei:graphic">
+  
+         jQuery("#page<xsl:value-of select="position()"/>").click(function()
             {
-            iv1.iviewer('loadImage', "<xsl:value-of select="$urlArray/item[1]"/>");
-            return false;
-            });
-         jQuery("#page2").click(function()
-            {
-            iv1.iviewer('loadImage', "<xsl:value-of select="$urlArray/item[2]"/>");
-            return false;
-            });
-         jQuery("#page3").click(function()
-            {
-            iv1.iviewer('loadImage', "http://rcldrupaldev.lib.rochester.edu:89/sites/all/modules/xsl_formatter/xsl/scripts/iviewer/test/18310102FMS_WHS1_p3.jpg");
-            return false;
-            });
-         jQuery("#page4").click(function()
-            {
-            iv1.iviewer('loadImage', "http://rcldrupaldev.lib.rochester.edu:89/sites/all/modules/xsl_formatter/xsl/scripts/iviewer/test/18310102FMS_WHS1_p4.jpg");
-            return false;
-            });
+              iv1.iviewer('loadImage', "<xsl:value-of select="@url"/>");
+                 return false;
+             });
+             
+         </xsl:for-each>
          
          var iv2 = jQuery("#viewer2").iviewer(
          {
