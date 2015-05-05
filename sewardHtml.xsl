@@ -50,11 +50,9 @@
      
         <link rel="stylesheet" href="http://rcldrupaldev.lib.rochester.edu:89/sites/all/modules/xsl_formatter/xsl/scripts/iviewer/jquery.iviewer.css"/>
         <div class="sewardViewer">
-        
-            
+   
             <div id="viewer" class="viewer"></div>
-        
-        
+ 
         </div>
      <script type="text/javascript" src="http://rcldrupaldev.lib.rochester.edu:89/sites/all/modules/xsl_formatter/xsl/scripts/sewardTools.js"/>
         <div class="sewardToolbox">
@@ -70,8 +68,7 @@
             </div>
            
                     <xsl:apply-templates select="//tei:text/tei:body/tei:div"/>
-               
-                
+
     </xsl:template>
 
     <xsl:template match="tei:text/tei:body/tei:div/tei:p">
@@ -101,12 +98,10 @@
         
         <xsl:element name="a">
             <xsl:attribute name="href">#</xsl:attribute>
-            <xsl:attribute name="id">page<xsl:value-of select="@n"/></xsl:attribute>
+            <xsl:attribute name="id">page<xsl:value-of select="@n"/>Page <xsl:value-of select="@n"/></xsl:attribute>
             <xsl:apply-templates/>
         </xsl:element>
-       
-        
-        
+ 
     </xsl:template>
    
     <xsl:template match="//tei:titleStmt/tei:title">
