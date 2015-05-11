@@ -85,9 +85,10 @@
         <br />
     </xsl:template>
     <xsl:template match="tei:text/tei:body/tei:div/tei:p/tei:note">
-        <span class="note">note</span>
-        <div class="hiddenDiv">
+        <a class="note">
             <xsl:apply-templates/>
+        </a>
+        <div class="hiddenDiv"> 
         </div>
     </xsl:template>
     <xsl:template match="tei:text/tei:body/tei:div/tei:p/tei:hi | @strikethrough">
@@ -149,16 +150,36 @@
         <a class="note">
             <xsl:apply-templates/>
         </a>
-        <div class="hiddenDiv">
-            <xsl:variable name="person" select="tei:text/tei:body/tei:div/tei:p/tei:persName | @xml:id"/>
-            <strong>Name:</strong><xsl:text>&#160;</xsl:text><xsl:value-of select = "document('http://seward.lib.rochester.edu/tei/persons.xml')//tei:text/tei:body/tei:div/tei:listPerson/tei:person[@xml:id = $person]/tei:persName/tei:forename[@type = 'first']"></xsl:value-of>
-            <xsl:text>&#160;</xsl:text>
-            <xsl:value-of select = "document('http://seward.lib.rochester.edu/tei/persons.xml')//tei:text/tei:body/tei:div/tei:listPerson/tei:person[@xml:id = $person]/tei:persName/tei:surname[@type = 'last' or 'maiden']"></xsl:value-of>
-            <xsl:text>&#xa;</xsl:text>
-            <strong>Birth:</strong><xsl:text>&#160;</xsl:text><xsl:value-of select = "document('http://seward.lib.rochester.edu/tei/persons.xml')//tei:text/tei:body/tei:div/tei:listPerson/tei:person[@xml:id = $person]/tei:birth"></xsl:value-of>
-            <xsl:text>&#xa;</xsl:text>
-            <strong>Death:</strong><xsl:text>&#160;</xsl:text><xsl:value-of select = "document('http://seward.lib.rochester.edu/tei/persons.xml')//tei:text/tei:body/tei:div/tei:listPerson/tei:person[@xml:id = $person]/tei:death"></xsl:value-of>
-        </div>
+        <xsl:variable name="person" select="tei:text/tei:body/tei:div/tei:p/tei:persName | @xml:id"/>
+        <xsl:variable name="personCert" select="tei:text/tei:body/tei:div/tei:p/tei:persName | @cert"/>
+        <xsl:if test="$personCert = 'unknown'">
+            <div class="hiddenDiv">
+                <strong>Annotation Required</strong>
+            </div>
+        </xsl:if>
+        <xsl:if test="$person != ''">
+            <div class="hiddenDiv">
+                <strong>Name:</strong><xsl:text>&#160;</xsl:text><xsl:value-of select = "document('http://seward.lib.rochester.edu/tei/persons.xml')//tei:text/tei:body/tei:div/tei:listPerson/tei:person[@xml:id = $person]/tei:persName/tei:forename[@type = 'first']"></xsl:value-of>
+                <xsl:text>&#160;</xsl:text>
+                <xsl:value-of select = "document('http://seward.lib.rochester.edu/tei/persons.xml')//tei:text/tei:body/tei:div/tei:listPerson/tei:person[@xml:id = $person]/tei:persName/tei:surname[@type = 'last' or 'maiden']"></xsl:value-of>
+                <xsl:text>&#xa;</xsl:text>
+                <strong>Birth:</strong><xsl:text>&#160;</xsl:text><xsl:value-of select = "document('http://seward.lib.rochester.edu/tei/persons.xml')//tei:text/tei:body/tei:div/tei:listPerson/tei:person[@xml:id = $person]/tei:birth"></xsl:value-of>
+                <xsl:text>&#xa;</xsl:text>
+                <strong>Death:</strong><xsl:text>&#160;</xsl:text><xsl:value-of select = "document('http://seward.lib.rochester.edu/tei/persons.xml')//tei:text/tei:body/tei:div/tei:listPerson/tei:person[@xml:id = $person]/tei:death"></xsl:value-of>
+            </div>
+        </xsl:if>
+    </xsl:template>
+    <xsl:template match="tei:text/tei:body/tei:div/tei:p/tei:placeName">
+        <a class="note">
+            <xsl:apply-templates/>
+        </a>
+        <xsl:variable name="place" select="tei:text/tei:body/tei:div/tei:p/tei:placeName | @ref"/>
+            <div class="hiddenDiv">
+                <strong>Place Name: </strong><xsl:text>&#160;</xsl:text><xsl:value-of select = "document('http://seward.lib.rochester.edu/tei/places.xml')//tei:text/tei:body/tei:div/tei:listPlace/tei:place[@xml:id = $place]/tei:placeName"></xsl:value-of>
+                <strong>City: </strong><xsl:text>&#160;</xsl:text><xsl:value-of select = "document('http://seward.lib.rochester.edu/tei/places.xml')//tei:text/tei:body/tei:div/tei:listPlace/tei:place[@xml:id = $place]/tei:settlement"></xsl:value-of>
+                <strong>State: </strong><xsl:text>&#160;</xsl:text><xsl:value-of select = "document('http://seward.lib.rochester.edu/tei/places.xml')//tei:text/tei:body/tei:div/tei:listPlace/tei:place[@xml:id = $place]/tei:region[@type = 'state']"></xsl:value-of>
+                <strong>Country: </strong><xsl:text>&#160;</xsl:text><xsl:value-of select = "document('http://seward.lib.rochester.edu/tei/places.xml')//tei:text/tei:body/tei:div/tei:listPlace/tei:place[@xml:id = $place]/tei:country"></xsl:value-of>
+            </div>
     </xsl:template>
     
 </xsl:stylesheet>
